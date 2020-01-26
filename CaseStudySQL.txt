@@ -1,4 +1,4 @@
-1.Which actors have the first name ‘Scarlett’
+﻿1.Which actors have the first name ‘Scarlett’
  Answer:- select * from actor where first_name like 'Scarlett';
 
 2.Which actors have the last name ‘Johansson’
@@ -14,13 +14,18 @@ Answer:- select last_name from actor group by last_name having count(last_name)=
 Answer:- select last_name from actor group by last_name having count(last_name)>1;
 
 6.Which actor has appeared in the most films?
-Answer:- 
+Answer:- select actor.actor_id, actor.first_name, actor.last_name,
+count(actor_id) as film_count 
+from actor join film_actor using (actor_id)
+group by actor_id
+order by film_count desc
+ limit 1;
 
 7.Is ‘Academy Dinosaur’ available for rent from Store 1?
 Answer:- 
 
 8.Insert a record to represent Mary Smith renting ‘Academy Dinosaur’ from Mike Hillyer at Store 1 today .
-Answer:- 
+Answer:- insert into rental (rental_date, inventory_id, customer_id, staff_id)values (NOW(), 1, 1, 1);
 
 9.When is ‘Academy Dinosaur’ due?
 Answer:- 
